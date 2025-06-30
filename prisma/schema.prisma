@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Recette {
+  id                       Int                     @id @default(autoincrement())
+  titre                    String
+  description              String
+  image_url                String
+  temps_preparation        Int?
+  nb_vues                  Int                     @default(0)
+  note                     Float                   @default(0.0)
+  categorie                String
+  ingredients              Ingredient[]            @relation("RecetteIngredients")
+  instructions             Instruction[]           @relation("RecetteInstructions")
+  valeursNutritionnelles   ValeursNutritionnelles? @relation(fields: [valeursNutritionnellesId], references: [id])
+  valeursNutritionnellesId Int?                    @unique
+}
+
+// enum Categorie {
+//   plat
+//   Dessert
+//   PetitDejeuner
+//   Aperetif
+//   Entree
+//   Boisson
+// }
+
+model ValeursNutritionnelles {
+  id        Int       @id @default(autoincrement())
+  calories  Int
+  proteines Float
+  glucides  Float
+  lipides   Float
+  recette   Recette?  @relation
+}
+
+model Ingredient {
+  id         Int     @id @default(autoincrement())
+  nom        String
+  quantite   Float
+  unite      String
+  recette    Recette @relation("RecetteIngredients", fields: [recetteId], references: [id])
+  recetteId  Int
+}
+
+model Instruction {
+  id         Int     @id @default(autoincrement())
+  etape      String
+  recette    Recette @relation("RecetteInstructions", fields: [recetteId], references: [id])
+  recetteId  Int
+}
+

@@ -1,0 +1,36 @@
+{
+  "name": "api-nutrimeal",
+  "version": "1.0.0",
+  "description": "api pour les recttes et la nutrition",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nomimie16/api-nutrimeal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nomimie16/api-nutrimeal/issues"
+  },
+  "homepage": "https://github.com/nomimie16/api-nutrimeal#readme",
+  "dependencies": {
+    "@prisma/client": "^6.10.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prisma": "^6.10.1"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  }
+}
