@@ -5,8 +5,8 @@ const { PrismaClient } = require('@prisma/client');
 const app = express();
 const prisma = new PrismaClient();
 
-app.use(cors());           // Autoriser les requêtes Cross-Origin (pratique pour Flutter en dev)
-app.use(express.json());   // Pour parser le JSON des requêtes POST/PUT
+app.use(cors());       
+app.use(express.json());   
 
 app.get('/recettes', async (req, res) => {
   try {
@@ -24,9 +24,34 @@ app.get('/recettes', async (req, res) => {
   }
 });
 
-// Recupere une recette par id
-app.get('/recettes/:id', async (req, res) => {
-  const recetteId = parseInt(req.params.id);
+// Recupere les recettes par categorie
+app.get('/recettes/categorie/:categorie', async (req, res) => {
+    const categorie = req.params.categorie;
+    
+    try {
+        const recettes = await prisma.recette.findMany({
+        where: { categorie },
+        include: {
+            ingredients: true,
+            instructions: true,
+            valeursNutritionnelles: true,
+        },
+        });
+    
+        if (recettes.length === 0) {
+        return res.status(404).json({ error: 'Aucune recette trouvée pour cette catégorie' });
+        }
+    
+        res.json(recettes);
+    } catch (error) {
+        console.error('Erreur lors de la récupération des recettes par catégorie :', error);
+        res.status(500).json({ error: 'Erreur serveur' });
+    }
+});
+
+// Recupere une recette par id (Express 5.x syntaxe RegExp)
+app.get(/^\/recettes\/(\d+)$/, async (req, res) => {
+  const recetteId = parseInt(req.params[0]);
 
   if (isNaN(recetteId)) {
     return res.status(400).json({ error: 'ID invalide' });
@@ -63,7 +88,8 @@ app.get('/ingredients', async (req, res) => {
   res.json(ingredients);
 });
 
-// Recupere la valeur
+
+// Recupere la valeur nutritionelle
 app.get('/recettes/:id/nutrition', async (req, res) => {
   const id = parseInt(req.params.id);
   const nutrition = await prisma.valeursNutritionnelles.findFirst({

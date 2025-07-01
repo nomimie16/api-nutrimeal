@@ -34,7 +34,7 @@ const recettes = [
   {
     titre: "Smoothie banane-fraise",
     description: "Une boisson rafraîchissante et riche en vitamines.",
-    image_url: "https://images.pexels.com/photos/775032/pexels-photo-775032.jpeg",
+    image_url: "https://images.pexels.com/photos/4443476/pexels-photo-4443476.jpeg",
     temps_preparation: 10,
     nb_vues: 0,
     note: 4.2,
@@ -85,7 +85,95 @@ const recettes = [
       glucides: 18,
       lipides: 9
     }
+  },
+  {
+    titre: "Salade César au poulet",
+    description: "Une salade fraîche et gourmande avec une sauce crémeuse.",
+    image_url: "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg",
+    temps_preparation: 20,
+    nb_vues: 10,
+    note: 4.6,
+    categorie: "entrée",
+    ingredients: [
+      { nom: "Blancs de poulet", quantite: 200, unite: "g" },
+      { nom: "Salade romaine", quantite: 1, unite: "pièce" },
+      { nom: "Parmesan râpé", quantite: 30, unite: "g" },
+      { nom: "Croûtons", quantite: 50, unite: "g" },
+      { nom: "Sauce César", quantite: 50, unite: "ml" }
+    ],
+    instructions: [
+      { etape: "Faire griller le poulet et le couper en morceaux." },
+      { etape: "Laver la salade et la couper." },
+      { etape: "Mélanger la salade avec la sauce César." },
+      { etape: "Ajouter le poulet, les croûtons et le parmesan." }
+    ],
+    valeurNutritionnelle: {
+      calories: 350,
+      proteines: 35,
+      glucides: 15,
+      lipides: 18
+    }
+  },
+  {
+    titre: "Pâtes à la carbonara",
+    description: "Un classique italien riche et crémeux.",
+    image_url: "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg",
+    temps_preparation: 25,
+    nb_vues: 15,
+    note: 4.9,
+    categorie: "plat",
+    ingredients: [
+      { nom: "Spaghetti", quantite: 200, unite: "g" },
+      { nom: "Lardons", quantite: 150, unite: "g" },
+      { nom: "Crème fraîche", quantite: 100, unite: "ml" },
+      { nom: "Œufs", quantite: 2, unite: "pièces" },
+      { nom: "Parmesan râpé", quantite: 50, unite: "g" },
+      { nom: "Poivre", quantite: 1, unite: "pincée" }
+    ],
+    instructions: [
+      { etape: "Cuire les pâtes al dente." },
+      { etape: "Faire revenir les lardons sans matière grasse." },
+      { etape: "Mélanger la crème, les œufs et le parmesan." },
+      { etape: "Mélanger les pâtes chaudes avec le mélange, ajouter les lardons et poivrer." }
+    ],
+    valeurNutritionnelle: {
+      calories: 680,
+      proteines: 30,
+      glucides: 75,
+      lipides: 25
+    }
+  },
+  {
+    titre: "Tarte aux pommes",
+    description: "Une tarte traditionnelle aux pommes fondantes.",
+    image_url: "https://images.pexels.com/photos/3223494/pexels-photo-3223494.jpeg",
+    temps_preparation: 45,
+    nb_vues: 25,
+    note: 4.7,
+    categorie: "dessert",
+    ingredients: [
+      { nom: "Pâte brisée", quantite: 1, unite: "rouleau" },
+      { nom: "Pommes", quantite: 5, unite: "pièces" },
+      { nom: "Sucre", quantite: 80, unite: "g" },
+      { nom: "Beurre", quantite: 30, unite: "g" },
+      { nom: "Cannelle", quantite: 1, unite: "c. à café" }
+    ],
+    instructions: [
+      { etape: "Préchauffer le four à 180°C." },
+      { etape: "Étaler la pâte dans un moule." },
+      { etape: "Éplucher et couper les pommes en fines tranches." },
+      { etape: "Disposer les pommes sur la pâte, saupoudrer de sucre et cannelle." },
+      { etape: "Parsemer de petits morceaux de beurre." },
+      { etape: "Cuire 35 minutes jusqu’à ce que la pâte soit dorée." }
+    ],
+    valeurNutritionnelle: {
+      calories: 290,
+      proteines: 3,
+      glucides: 45,
+      lipides: 12
+    }
   }
+  
 ];
 
 async function main() {
